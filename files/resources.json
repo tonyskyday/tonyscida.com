@@ -26,5 +26,12 @@
 	"source": "12tone",
 	"url": "https://www.youtube.com/watch?v=5qAZKER0u10",
 	"type": "video"
+},
+{
+	"id": 5,
+	"title": "Circle of fifths",
+	"source": "Wikipedia",
+	"url": "https://en.wikipedia.org/wiki/Circle_of_fifths",
+	"type": "article"
 }
 ]
