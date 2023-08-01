@@ -55,3 +55,11 @@ header .header-content-inner {
 header {
         min-height: 100vh;
 }
+
+.navbar-default .nav>li>a, .navbar-default .nav>li>a:focus {
+        color: white;
+        
+        &:hover {
+                color: rgba(255,255,255,0.7)
+        }
+}
