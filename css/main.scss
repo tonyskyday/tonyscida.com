@@ -310,6 +310,36 @@ a {
     margin-bottom: 1.25rem;
 }
 
+// Featured card (Work/Fanfare)
+.card-featured {
+    display: flex;
+    flex-direction: column;
+
+    .card-description {
+        flex-grow: 1;
+    }
+}
+
+.card-brand {
+    margin-bottom: 1.25rem;
+
+    .fanfare-logo {
+        max-width: 200px;
+        height: auto;
+        @include transition-all;
+    }
+
+    .fanfare-fallback {
+        color: $color-accent;
+        font-size: 1.5rem;
+        margin: 0;
+    }
+}
+
+.card:hover .fanfare-logo {
+    transform: scale(1.02);
+}
+
 .card-icon {
     width: 56px;
     height: 56px;
