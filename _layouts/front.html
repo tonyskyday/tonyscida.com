@@ -3,9 +3,177 @@
 
 {% include head.html %}
 
-<body id="page-top">
-  {% include nav.html %}
-  {% include header.html %}
+<body>
+    <div class="landing-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <div class="hero-photo-wrapper">
+                    <img src="{{ site.headshot }}" alt="{{ site.author }}" class="hero-photo">
+                </div>
+                <h1 class="hero-name">{{ site.title }}</h1>
+                <div class="hero-accent"></div>
+                <p class="hero-tagline">{{ site.tagline }}</p>
+                <p class="hero-location">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    {{ site.location }}
+                </p>
+            </div>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="cards-section">
+            <div class="cards-grid">
+                <!-- Music Card -->
+                <div class="card card-music">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 18V5l12-2v13"></path>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <circle cx="18" cy="16" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Music</h2>
+                    </div>
+                    <p class="card-description">
+                        Trumpet player and teacher with a degree from Shenandoah Conservatory. I
+                        perform regularly with groups in Richmond, including the <a href="https://www.richmondphilharmonic.org">Richmond Philharmonic</a>
+                        and the Richmond Brass and Percussion Consort.
+                        I offer private lessons for beginner through intermediate students,
+                        in-person in the Richmond area or online. Get in touch for:
+                    </p>
+                    <ul class="card-details">
+                        <li>Private lessons (online or in-person)</li>
+                        <li>Weddings, events & recording sessions</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                </div>
+
+                <!-- Work Card -->
+                <div class="card card-work card-featured">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Work</h2>
+                    </div>
+                    <div class="card-brand">
+                        <img src="{{ site.fanfare_logo }}" alt="Fanfare Studio" class="fanfare-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fanfare-fallback" style="display:none;">Fanfare Studio</span>
+
+                    <p class="card-description">
+                        {{ site.fanfare.description }}
+                    </p>
+                    </div>
+                    <a href="{{ site.fanfare.url }}" target="_blank" rel="noopener" class="btn btn-outline">Visit Fanfare Studio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Performances Section -->
+        {% if site.data.performances.size > 0 %}
+        <section class="performances-section">
+            <div class="performances-container">
+                <h2 class="performances-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Upcoming Performances
+                </h2>
+                <div class="performances-list">
+                    {% for performance in site.data.performances %}
+                    <div class="performance-item">
+                        <div class="performance-date">
+                            <span class="performance-day">{{ performance.date | date: "%b %d" }}</span>
+                            <span class="performance-time">{{ performance.time }}</span>
+                        </div>
+                        <div class="performance-details">
+                            <span class="performance-ensemble">{{ performance.ensemble }}</span>
+                            {% if performance.title %}
+                            <span class="performance-event">{{ performance.title }}</span>
+                            {% endif %}
+                            <span class="performance-venue">{{ performance.venue }}{% if performance.location %}, {{ performance.location }}{% endif %}</span>
+                        </div>
+                        {% if performance.link %}
+                        <a href="{{ performance.link }}" target="_blank" rel="noopener" class="performance-link">Details</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Connect Section -->
+        <section class="connect-section">
+            <div class="connect-card">
+                <h3 class="connect-title">Connect</h3>
+                <div class="social-links">
+                    {% for link in site.data.social %}
+                    <a href="{{ link.url }}" target="_blank" rel="noopener">
+                        {{ link.icon }}
+                        {{ link.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <h2 class="contact-title">Let's Talk</h2>
+                <p class="contact-subtitle">Interested in lessons, hiring me for an event, or just want to connect?</p>
+
+                <form class="contact-form" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest" class="form-label">I'm interested in...</label>
+                        <select id="interest" name="interest" class="form-select" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="lessons">Trumpet Lessons</option>
+                            <option value="event">Hiring for an Event</option>
+                            <option value="other">Something Else</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}</p>
+        </footer>
+    </div>
 </body>
 
 </html>

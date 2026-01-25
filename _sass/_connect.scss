@@ -1,0 +1,66 @@
+// Connect Section
+.connect-section {
+    padding: 0 1.5rem 3rem;
+    text-align: center;
+
+    @media (min-width: 768px) {
+        padding: 0 1.5rem 4rem;
+    }
+}
+
+.connect-card {
+    background: $color-white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 4px 12px rgba(0, 0, 0, 0.06);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.connect-title {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $color-light-gray;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.125rem;
+        border-radius: 8px;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: $color-warm-gray;
+        background: $color-off-white;
+        border: 1px solid transparent;
+        @include transition-all;
+
+        svg {
+            @include transition-fast;
+        }
+
+        &:hover {
+            color: $color-accent;
+            background: $color-white;
+            border-color: rgba($color-accent, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+            svg {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
