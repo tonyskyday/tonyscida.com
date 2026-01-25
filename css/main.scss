@@ -3,15 +3,15 @@
 
 @charset "utf-8";
 
-// Color Palette - Monochrome Warm with Brass Accent
-$color-charcoal: #2D2D2D;
-$color-warm-gray: #5A5A5A;
-$color-light-gray: #8A8A8A;
-$color-brass: #B8860B;
-$color-brass-light: #D4A84B;
-$color-brass-dark: #8B6914;
-$color-cream: #FAF8F5;
-$color-off-white: #F5F3F0;
+// Color Palette - Warm Slate + Terracotta
+$color-charcoal: #3D4852;      // Deep blue-gray slate
+$color-warm-gray: #606F7B;     // Slate mid-tone
+$color-light-gray: #8795A1;    // Slate light
+$color-accent: #C67D5E;        // Warm terracotta (from brick)
+$color-accent-light: #D99A7E;  // Lighter terracotta
+$color-accent-dark: #A86544;   // Darker terracotta
+$color-cream: #FAF9F7;         // Warm cream background
+$color-off-white: #F3F1EE;     // Slightly darker cream
 $color-white: #FFFFFF;
 
 // Typography
@@ -86,12 +86,12 @@ p {
 }
 
 a {
-    color: $color-brass;
+    color: $color-accent;
     text-decoration: none;
     @include transition-fast;
 
     &:hover, &:focus {
-        color: $color-brass-dark;
+        color: $color-accent-dark;
     }
 }
 
@@ -129,8 +129,8 @@ a {
     bottom: 0;
     background: linear-gradient(
         180deg,
-        rgba($color-brass, 0.08) 0%,
-        rgba($color-brass, 0.03) 50%,
+        rgba($color-accent, 0.08) 0%,
+        rgba($color-accent, 0.03) 50%,
         transparent 100%
     );
     z-index: 0;
@@ -144,7 +144,7 @@ a {
         height: 200%;
         background: radial-gradient(
             circle at 30% 20%,
-            rgba($color-brass, 0.1) 0%,
+            rgba($color-accent, 0.1) 0%,
             transparent 50%
         );
     }
@@ -167,7 +167,7 @@ a {
         left: -6px;
         right: -6px;
         bottom: -6px;
-        background: linear-gradient(135deg, $color-brass 0%, $color-brass-light 50%, $color-brass 100%);
+        background: linear-gradient(135deg, $color-accent 0%, $color-accent-light 50%, $color-accent 100%);
         border-radius: 50%;
         z-index: -1;
         opacity: 0.9;
@@ -180,7 +180,7 @@ a {
         left: -12px;
         right: -12px;
         bottom: -12px;
-        border: 2px solid rgba($color-brass, 0.2);
+        border: 2px solid rgba($color-accent, 0.2);
         border-radius: 50%;
         z-index: -2;
     }
@@ -211,7 +211,7 @@ a {
 .hero-accent {
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, $color-brass, $color-brass-light);
+    background: linear-gradient(90deg, $color-accent, $color-accent-light);
     margin: 0 auto 1rem;
     border-radius: 2px;
 }
@@ -280,7 +280,7 @@ a {
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, $color-brass, $color-brass-light);
+        background: linear-gradient(90deg, $color-accent, $color-accent-light);
         opacity: 0;
         @include transition-all;
     }
@@ -296,7 +296,7 @@ a {
         }
 
         .card-icon {
-            background: linear-gradient(135deg, $color-brass, $color-brass-light);
+            background: linear-gradient(135deg, $color-accent, $color-accent-light);
             color: $color-white;
             transform: scale(1.05);
         }
@@ -314,8 +314,8 @@ a {
     width: 56px;
     height: 56px;
     border-radius: 14px;
-    background: rgba($color-brass, 0.1);
-    color: $color-brass;
+    background: rgba($color-accent, 0.1);
+    color: $color-accent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -392,7 +392,7 @@ a {
             top: 0.5rem;
             width: 6px;
             height: 6px;
-            background: $color-brass;
+            background: $color-accent;
             border-radius: 50%;
         }
     }
@@ -442,23 +442,23 @@ a {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, $color-brass 0%, $color-brass-dark 100%);
+    background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
     color: $color-white;
-    box-shadow: 0 4px 12px rgba($color-brass, 0.3);
+    box-shadow: 0 4px 12px rgba($color-accent, 0.3);
 
     &:hover {
-        box-shadow: 0 6px 20px rgba($color-brass, 0.4);
+        box-shadow: 0 6px 20px rgba($color-accent, 0.4);
         color: $color-white;
     }
 }
 
 .btn-outline {
     background-color: transparent;
-    color: $color-brass;
-    border: 2px solid $color-brass;
+    color: $color-accent;
+    border: 2px solid $color-accent;
 
     &:hover {
-        background-color: $color-brass;
+        background-color: $color-accent;
         color: $color-white;
     }
 }
@@ -517,9 +517,9 @@ a {
         }
 
         &:hover {
-            color: $color-brass;
+            color: $color-accent;
             background: $color-white;
-            border-color: rgba($color-brass, 0.2);
+            border-color: rgba($color-accent, 0.2);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
@@ -544,7 +544,7 @@ a {
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba($color-brass, 0.5), transparent);
+        background: linear-gradient(90deg, transparent, rgba($color-accent, 0.5), transparent);
     }
 }
 
@@ -615,9 +615,9 @@ a {
 
     &:focus {
         outline: none;
-        border-color: $color-brass;
+        border-color: $color-accent;
         background: rgba(255, 255, 255, 0.12);
-        box-shadow: 0 0 0 4px rgba($color-brass, 0.15);
+        box-shadow: 0 0 0 4px rgba($color-accent, 0.15);
     }
 }
 
@@ -647,7 +647,7 @@ a {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    background: linear-gradient(135deg, $color-brass 0%, $color-brass-dark 100%);
+    background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
     color: $color-white;
     border: none;
     border-radius: 8px;
@@ -674,7 +674,7 @@ a {
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba($color-brass, 0.4);
+        box-shadow: 0 8px 24px rgba($color-accent, 0.4);
 
         &::before {
             left: 100%;
@@ -714,7 +714,7 @@ a {
 
 // Selection
 ::selection {
-    background: rgba($color-brass, 0.3);
+    background: rgba($color-accent, 0.3);
     color: $color-charcoal;
 }
 
