@@ -24,6 +24,8 @@ formspree_id: "mykwgeyo"
 
 # Build settings
 markdown: kramdown
+theme: null
+plugins: []
 sass:
   style: compressed
 
