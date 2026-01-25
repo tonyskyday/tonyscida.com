@@ -1,0 +1,43 @@
+# Upcoming Performances
+# Edit this file to update the performances section on your website
+#
+# Format:
+#   - date: "Month Day, Year"
+#     time: "Time"
+#     ensemble: "Group Name"
+#     title: "Concert Title (optional)"
+#     venue: "Venue Name"
+#     location: "City, State"
+#     link: "https://... (optional)"
+#
+# Performances are displayed in the order listed here.
+# Remove past performances as needed.
+
+- date: "March 1, 2025"
+  time: "6:00 PM"
+  ensemble: "Commonwealth Winds"
+  venue: "Godwin High School"
+  location: "Richmond, VA"
+
+- date: "March 8, 2025"
+  time: "4:00 PM"
+  ensemble: "Richmond Philharmonic Orchestra"
+  title: "The American Dream"
+  venue: "St. Christopher's School Arts Center"
+  location: "Richmond, VA"
+  link: "https://www.richmondphilharmonic.org/concerts"
+
+- date: "April 18, 2025"
+  time: "4:00 PM"
+  ensemble: "Commonwealth Winds"
+  title: "ACB Convention"
+  venue: "ACB Convention"
+  location: "Towson, MD"
+
+- date: "May 3, 2025"
+  time: "4:00 PM"
+  ensemble: "Richmond Philharmonic Orchestra"
+  title: "Celebrating America"
+  venue: "St. Christopher's School Arts Center"
+  location: "Richmond, VA"
+  link: "https://www.richmondphilharmonic.org/concerts"
