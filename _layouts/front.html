@@ -10,17 +10,17 @@
             <div class="hero-bg"></div>
             <div class="hero-content">
                 <div class="hero-photo-wrapper">
-                    <img src="/img/headshot.jpg" alt="Tony Scida" class="hero-photo">
+                    <img src="{{ site.headshot }}" alt="{{ site.author }}" class="hero-photo">
                 </div>
-                <h1 class="hero-name">Tony Scida</h1>
+                <h1 class="hero-name">{{ site.title }}</h1>
                 <div class="hero-accent"></div>
-                <p class="hero-tagline">Musician · Communicator</p>
+                <p class="hero-tagline">{{ site.tagline }}</p>
                 <p class="hero-location">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    Richmond, Virginia
+                    {{ site.location }}
                 </p>
             </div>
         </section>
@@ -66,15 +66,14 @@
                         <h2 class="card-title">Work</h2>
                     </div>
                     <div class="card-brand">
-                        <img src="/img/fanfare-logo.png" alt="Fanfare Studio" class="fanfare-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <img src="{{ site.fanfare_logo }}" alt="Fanfare Studio" class="fanfare-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span class="fanfare-fallback" style="display:none;">Fanfare Studio</span>
 
                     <p class="card-description">
-                        Creative communications firm helping companies solve marketing challenges.
-                        20+ years in PR, advertising, and nonprofit management.
+                        {{ site.fanfare.description }}
                     </p>
                     </div>
-                    <a href="https://yourfanfare.com" target="_blank" rel="noopener" class="btn btn-outline">Visit Fanfare Studio</a>
+                    <a href="{{ site.fanfare.url }}" target="_blank" rel="noopener" class="btn btn-outline">Visit Fanfare Studio</a>
                 </div>
             </div>
         </section>
@@ -137,7 +136,7 @@
                 <h2 class="contact-title">Let's Talk</h2>
                 <p class="contact-subtitle">Interested in lessons, hiring me for an event, or just want to connect?</p>
 
-                <form class="contact-form" action="https://formspree.io/f/mykwgeyo" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
@@ -172,7 +171,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2026 Tony Scida</p>
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}</p>
         </footer>
     </div>
 </body>
