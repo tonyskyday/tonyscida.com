@@ -13,13 +13,13 @@
 # Performances are displayed in the order listed here.
 # Remove past performances as needed.
 
-- date: "March 1, 2025"
+- date: "March 1, 2026"
   time: "6:00 PM"
   ensemble: "Commonwealth Winds"
   venue: "Godwin High School"
   location: "Richmond, VA"
 
-- date: "March 8, 2025"
+- date: "March 8, 2026"
   time: "4:00 PM"
   ensemble: "Richmond Philharmonic Orchestra"
   title: "The American Dream"
@@ -27,14 +27,14 @@
   location: "Richmond, VA"
   link: "https://www.richmondphilharmonic.org/concerts"
 
-- date: "April 18, 2025"
+- date: "April 18, 2026"
   time: "4:00 PM"
   ensemble: "Commonwealth Winds"
   title: "ACB Convention"
   venue: "ACB Convention"
   location: "Towson, MD"
 
-- date: "May 3, 2025"
+- date: "May 3, 2026"
   time: "4:00 PM"
   ensemble: "Richmond Philharmonic Orchestra"
   title: "Celebrating America"

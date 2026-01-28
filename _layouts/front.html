@@ -9,19 +9,21 @@
         <section class="hero">
             <div class="hero-bg"></div>
             <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-tagline">{{ site.tagline }}</p>
+                    <h1 class="hero-name">{{ site.title }}</h1>
+                    <p class="hero-description">{{ site.hero.description }}</p>
+                    <p class="hero-location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        {{ site.location }}
+                    </p>
+                </div>
                 <div class="hero-photo-wrapper">
                     <img src="{{ site.headshot }}" alt="{{ site.author }}" class="hero-photo">
                 </div>
-                <h1 class="hero-name">{{ site.title }}</h1>
-                <div class="hero-accent"></div>
-                <p class="hero-tagline">{{ site.tagline }}</p>
-                <p class="hero-location">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    {{ site.location }}
-                </p>
             </div>
         </section>
 
@@ -32,7 +34,7 @@
                 <div class="card card-music">
                     <div class="card-header">
                         <div class="card-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path d="M9 18V5l12-2v13"></path>
                                 <circle cx="6" cy="18" r="3"></circle>
                                 <circle cx="18" cy="16" r="3"></circle>
@@ -40,63 +42,78 @@
                         </div>
                         <h2 class="card-title">Music</h2>
                     </div>
-                    <p class="card-description">
-                        Trumpet player and teacher with a degree from Shenandoah Conservatory. I
-                        perform regularly with groups in Richmond, including the <a href="https://www.richmondphilharmonic.org">Richmond Philharmonic</a>
-                        and the Richmond Brass and Percussion Consort.
-                        I offer private lessons for beginner through intermediate students,
-                        in-person in the Richmond area or online. Get in touch for:
-                    </p>
+                    <p class="card-description">{{ site.music.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
                     <ul class="card-details">
-                        <li>Private lessons (online or in-person)</li>
-                        <li>Weddings, events & recording sessions</li>
+                        {% for service in site.music.services %}
+                        <li>{{ service }}</li>
+                        {% endfor %}
                     </ul>
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#contact" class="btn btn-primary">{{ site.music.button_text }}</a>
                 </div>
 
                 <!-- Work Card -->
                 <div class="card card-work card-featured">
                     <div class="card-header">
-                        <div class="card-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        <div class="card-icon card-icon-fanfare">
+                            <svg viewBox="0 0 94.6 94.6" width="30" height="30">
+                                <defs>
+                                    <linearGradient id="fanfare-gradient" x1="6.4" y1="72.3" x2="88.4" y2="25" gradientTransform="translate(0 96) scale(1 -1)" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="#f2d06c"/>
+                                        <stop offset="1" stop-color="#f2a03d"/>
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#fanfare-gradient)" d="M89.5,27l-21.8-21.8C63.3.7,56.8-1,50.8.6l-29.8,8c-6,1.6-10.8,6.4-12.4,12.4L.6,50.8c-1.6,6,.1,12.5,4.5,16.9l21.8,21.8c3.3,3.3,7.8,5.1,12.4,5.1s3-.2,4.5-.6l29.8-8c6-1.6,10.8-6.4,12.4-12.4l8-29.8c1.6-6,0-12.5-4.5-16.9h0ZM6.4,52.3l8-29.8c1.1-4,4.2-7.1,8.2-8.2l29.8-8c1-.3,2-.4,3-.4,3,0,6,1.2,8.2,3.4l10.4,10.4c-6.9.7-12.8,7-15.6,16.3h-16c2.9-12,6-14.8,9.3-14.8s.6,0,1,0c.8.1,1.7.5,2.7,1.2h-.4c-1.9,0-4.1,1.9-4.6,4.3,0,.4-.2.7-.2,1.1,0,1.9,1.3,3.6,3.2,3.9h.6c2.3,0,4.2-2.3,4.3-5.1v-.2c0-3.5-2.5-6-6.2-6.6-.7-.1-1.5-.2-2.2-.2-7.4,0-14,6.4-17,16.4h-8l.3,3h6.7c-4,13-3.8,32.8-10.7,35.9l-2-2c.7-.7,1.3-1.7,1.5-2.7.1-.4.1-.7.1-1.1,0-2-1.3-3.6-3-4h-.6c-1.4,0-2.8.7-3.6,2.1l-4-4c-2.9-2.9-4.1-7.2-3-11.1l-.2.2ZM88.3,42.3l-8,29.8c-1.1,4-4.2,7.1-8.2,8.2l-29.8,8c-4,1.1-8.2,0-11.1-3l-8.1-8.1c12.1-2.7,15.1-25.5,18.4-38h15.8c-4.3,14.2-3.7,36.4-12.7,36.4s-2.2-.3-3.6-1h.4c1.9,0,4.1-1.9,4.6-4.3,0-.4,0-.7,0-1.1,0-2-1.3-3.6-3-4h-.6c-1.8,0-3.8,1.3-4.2,3.8-.2.6-.3,1.2-.3,1.8,0,4.1,4.2,6.6,8.2,6.6,14.2,0,17.3-24.9,20.9-38.3h9.1l-.3-3h-8.1c2.5-10.3,5.1-13.8,7.9-14.6l2.1,2.1c-.9.8-1.7,1.9-2,3.2,0,.4-.2.7-.2,1.1,0,1.9,1.3,3.6,3.2,3.9h.6c1.6,0,3.1-1.2,3.8-2.9l2.2,2.2c2.9,2.9,4.1,7.2,3,11.1h0Z"/>
                             </svg>
                         </div>
-                        <h2 class="card-title">Work</h2>
+                        <h2 class="card-title">Fanfare Studio</h2>
                     </div>
-                    <div class="card-brand">
-                        <img src="{{ site.fanfare_logo }}" alt="Fanfare Studio" class="fanfare-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="fanfare-fallback" style="display:none;">Fanfare Studio</span>
-
-                    <p class="card-description">
-                        {{ site.fanfare.description }}
-                    </p>
-                    </div>
-                    <a href="{{ site.fanfare.url }}" target="_blank" rel="noopener" class="btn btn-outline">Visit Fanfare Studio</a>
+                    <p class="card-description">{{ site.fanfare.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+                    <ul class="card-details">
+                        {% for service in site.fanfare.services %}
+                        <li>{{ service }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ site.fanfare.url }}" target="_blank" rel="noopener" class="btn btn-outline">{{ site.fanfare.button_text }}</a>
                 </div>
             </div>
         </section>
 
-        <!-- Upcoming Performances Section -->
-        {% if site.data.performances.size > 0 %}
+        <!-- Performances Section (tied to Music) -->
+        {% assign today = site.time | date: "%Y%m%d" | plus: 0 %}
+        {% assign upcoming_performances = "" | split: "" %}
+        {% for performance in site.data.performances %}
+            {% assign perf_date = performance.date | date: "%Y%m%d" | plus: 0 %}
+            {% if perf_date >= today %}
+                {% assign upcoming_performances = upcoming_performances | push: performance %}
+            {% endif %}
+        {% endfor %}
+        {% assign show_performances = false %}
+        {% if upcoming_performances.size > 0 and site.hide_performances != true %}
+            {% assign show_performances = true %}
+        {% endif %}
+
+        {% if show_performances %}
         <section class="performances-section">
             <div class="performances-container">
-                <h2 class="performances-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    Upcoming Performances
-                </h2>
+                <div class="performances-header">
+                    <div class="performances-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="performances-header-text">
+                        <h2 class="performances-title">{{ site.performances.title }}</h2>
+                        <p class="performances-subtitle">{{ site.performances.subtitle }}</p>
+                    </div>
+                </div>
                 <div class="performances-list">
-                    {% for performance in site.data.performances %}
+                    {% for performance in upcoming_performances %}
                     <div class="performance-item">
                         <div class="performance-date">
-                            <span class="performance-day">{{ performance.date | date: "%b %d" }}</span>
-                            <span class="performance-time">{{ performance.time }}</span>
+                            <span class="performance-month">{{ performance.date | date: "%b" }}</span>
+                            <span class="performance-day">{{ performance.date | date: "%d" }}</span>
                         </div>
                         <div class="performance-details">
                             <span class="performance-ensemble">{{ performance.ensemble }}</span>
@@ -104,9 +121,10 @@
                             <span class="performance-event">{{ performance.title }}</span>
                             {% endif %}
                             <span class="performance-venue">{{ performance.venue }}{% if performance.location %}, {{ performance.location }}{% endif %}</span>
+                            <span class="performance-time">{{ performance.time }}</span>
                         </div>
                         {% if performance.link %}
-                        <a href="{{ performance.link }}" target="_blank" rel="noopener" class="performance-link">Details</a>
+                        <a href="{{ performance.link }}" target="_blank" rel="noopener" class="performance-link">Info</a>
                         {% endif %}
                     </div>
                     {% endfor %}
@@ -115,10 +133,61 @@
         </section>
         {% endif %}
 
+        <!-- Photography Section -->
+        <section class="photography-section">
+            <div class="photography-container">
+                <div class="photography-header">
+                    <div class="photography-header-text">
+                        <h2 class="photography-title">{{ site.photography.title }}</h2>
+                        <p class="photography-subtitle">{{ site.photography.subtitle }}</p>
+                    </div>
+                    <a href="{{ site.photography.link_url }}" target="_blank" rel="noopener" class="photography-link">
+                        {{ site.photography.link_text }}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="photography-gallery">
+                    <div class="gallery-item">
+                        <img src="/img/gallery/James-River-Aug-2025-11.jpg" alt="James River, Richmond">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/Memphis-Dec-2024-3.jpg" alt="Beale Street doors, Memphis">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/Fan-Truck-Back.jpg" alt="Chevrolet truck in the Fan">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/Libby-Hill-2024-1.jpg" alt="Libby Hill Park">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/250807000381400018.jpg" alt="Keep Going sign">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/VisArts Scans-4.jpg" alt="Street scene film scan">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/Val Grad Photos-3.jpg" alt="Graduation portrait">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/James-River-Aug-2025-2.jpg" alt="James River">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/250807000381400033.jpg" alt="Red truck">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/gallery/250807000381400035.jpg" alt="Forest trail">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Connect Section -->
         <section class="connect-section">
             <div class="connect-card">
-                <h3 class="connect-title">Connect</h3>
+                <h3 class="connect-title">{{ site.connect.title }}</h3>
                 <div class="social-links">
                     {% for link in site.data.social %}
                     <a href="{{ link.url }}" target="_blank" rel="noopener">
@@ -133,8 +202,8 @@
         <!-- Contact Section -->
         <section id="contact" class="contact-section">
             <div class="contact-container">
-                <h2 class="contact-title">Let's Talk</h2>
-                <p class="contact-subtitle">Interested in lessons, hiring me for an event, or just want to connect?</p>
+                <h2 class="contact-title">{{ site.contact.title }}</h2>
+                <p class="contact-subtitle">{{ site.contact.subtitle }}</p>
 
                 <form class="contact-form" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
                     <div class="form-row">
@@ -164,7 +233,7 @@
                         <textarea id="message" name="message" class="form-textarea" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit" class="form-submit">Send Message</button>
+                    <button type="submit" class="form-submit">{{ site.contact.button_text }}</button>
                 </form>
             </div>
         </section>

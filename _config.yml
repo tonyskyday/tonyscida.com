@@ -1,10 +1,13 @@
 # Site settings
 title: Tony Scida
 tagline: "Musician · Communicator"
-description: "Trumpet player, teacher, and founder of Fanfare Studio. Based in Richmond, VA."
 author: Tony Scida
 email: tony@tonyscida.com
 location: "Richmond, Virginia"
+
+# Hero section
+hero:
+  description: "Trumpet player, teacher, and founder of Fanfare Studio. I help musicians and arts organizations tell their stories."
 
 # URLs
 url: "https://tonyscida.com"
@@ -14,13 +17,51 @@ baseurl: ""
 headshot: "/img/headshot.jpg"
 fanfare_logo: "/img/fanfare-logo.png"
 
-# Fanfare Studio
+# Music card
+music:
+  description: "I perform regularly with groups in Richmond, including the [Richmond Philharmonic](https://www.richmondphilharmonic.org) and the Richmond Brass and Percussion Consort. I offer private lessons for beginner through intermediate students, in-person in the Richmond area or online."
+  services:
+    - "Private lessons (online or in-person)"
+    - "Weddings, events & recording sessions"
+  button_text: "Get in Touch"
+
+# Fanfare Studio (Work card)
 fanfare:
   url: "https://yourfanfare.com"
-  description: "Creative communications firm helping companies solve marketing challenges. 20+ years in PR, advertising, and nonprofit management."
+  description: "A creative communications firm helping companies and organizations solve marketing challenges. Founded in 2021 after 20+ years in PR, advertising, and nonprofit management—including 12 years at [The Hodges Partnership](https://www.hodgespart.com), a top 100 independent PR firm."
+  services:
+    - "Writing & editing"
+    - "Communications strategy"
+    - "Creative development"
+  button_text: "Visit Fanfare Studio"
+
+# Performances section
+performances:
+  title: "Upcoming Performances"
+  subtitle: "Catch me playing around Richmond and beyond"
+
+# Photography section
+photography:
+  title: "Photography"
+  subtitle: "I love to take pictures with a variety of modern and vintage cameras"
+  link_text: "View more on Glass"
+  link_url: "https://glass.photo/tonyskyday"
+
+# Connect section
+connect:
+  title: "Connect"
+
+# Contact section
+contact:
+  title: "Let's Talk"
+  subtitle: "Interested in lessons, hiring me for an event, or just want to connect?"
+  button_text: "Send Message"
 
 # Contact form (Formspree)
 formspree_id: "mykwgeyo"
+
+# Toggle to hide performances section (for testing)
+hide_performances: false
 
 # Build settings
 markdown: kramdown
