@@ -1,0 +1,30 @@
+[
+{
+	"id": 2,
+	"title": "What is the circle of fifths?",
+	"source": "Classic FM",
+	"url": "https://www.classicfm.com/discover-music/music-theory/what-is-the-circle-of-fifths/",
+	"type": "article"
+},
+{
+	"id": 3,
+	"title": "Wynton's Twelve Ways to Practice",
+	"source": "Wynton Marsalis",
+	"url": "http://arbanmethod.com/wp-content/uploads/2015/04/twelvewaystopractice.pdf",
+	"type": "pdf"
+},
+{
+	"id": 4,
+	"title": "Building Blocks: What's A Scale",
+	"source": "12tone",
+	"url": "https://www.youtube.com/watch?v=5qAZKER0u10",
+	"type": "video"
+},
+{
+	"id": 5,
+	"title": "Circle of fifths",
+	"source": "Wikipedia",
+	"url": "https://en.wikipedia.org/wiki/Circle_of_fifths",
+	"type": "article"
+}
+]
