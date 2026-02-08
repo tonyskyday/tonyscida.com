@@ -1,0 +1,45 @@
+name: Update latest blog post
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Daily at noon UTC
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch latest blog post from RSS
+        run: |
+          # Fetch the RSS feed and extract the latest post
+          TITLE=$(curl -sL https://notanthony.com/feed/ | xmllint --xpath 'string(//item[1]/title)' -)
+          URL=$(curl -sL https://notanthony.com/feed/ | xmllint --xpath 'string(//item[1]/link)' -)
+
+          if [ -z "$TITLE" ] || [ -z "$URL" ]; then
+            echo "Could not parse RSS feed, skipping."
+            exit 0
+          fi
+
+          echo "Latest post: $TITLE"
+          echo "URL: $URL"
+
+          # Write updated data file
+          printf 'title: "%s"\nurl: "%s"\n' "$TITLE" "$URL" > _data/blog.yml
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet _data/blog.yml && echo "changed=false" >> "$GITHUB_OUTPUT" || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/blog.yml
+          git commit -m "Update latest blog post"
+          git push

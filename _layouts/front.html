@@ -78,6 +78,19 @@
             </div>
         </section>
 
+        <!-- Latest Blog Post -->
+        <section class="blog-latest-section">
+            <div class="blog-latest">
+                <span class="blog-latest-label">Latest on the blog</span>
+                <a href="{{ site.data.blog.url }}" target="_blank" rel="noopener" class="blog-latest-link">
+                    {{ site.data.blog.title }}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
         <!-- Performances Section (tied to Music) -->
         {% assign today = site.time | date: "%Y%m%d" | plus: 0 %}
         {% assign upcoming_performances = "" | split: "" %}
