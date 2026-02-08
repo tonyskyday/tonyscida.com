@@ -15,20 +15,33 @@ jobs:
 
       - name: Fetch latest blog post from RSS
         run: |
-          # Fetch the RSS feed and extract the latest post
-          TITLE=$(curl -sL https://notanthony.com/feed/ | xmllint --xpath 'string(//item[1]/title)' -)
-          URL=$(curl -sL https://notanthony.com/feed/ | xmllint --xpath 'string(//item[1]/link)' -)
+          python3 - <<'PYEOF'
+          import urllib.request, xml.etree.ElementTree as ET, sys
 
-          if [ -z "$TITLE" ] || [ -z "$URL" ]; then
-            echo "Could not parse RSS feed, skipping."
-            exit 0
-          fi
-
-          echo "Latest post: $TITLE"
-          echo "URL: $URL"
-
-          # Write updated data file
-          printf 'title: "%s"\nurl: "%s"\n' "$TITLE" "$URL" > _data/blog.yml
+          try:
+              req = urllib.request.Request("https://notanthony.com/feed/",
+                  headers={"User-Agent": "GitHub-Actions-Blog-Updater"})
+              data = urllib.request.urlopen(req).read()
+              root = ET.fromstring(data)
+              item = root.find(".//item")
+              if item is None:
+                  print("No items in feed, skipping.")
+                  sys.exit(0)
+              title = item.findtext("title", "").strip()
+              link = item.findtext("link", "").strip()
+              if not title or not link:
+                  print("Could not parse title/link, skipping.")
+                  sys.exit(0)
+              print(f"Latest post: {title}")
+              print(f"URL: {link}")
+              # Escape double quotes in title
+              title = title.replace('"', '\\"')
+              with open("_data/blog.yml", "w") as f:
+                  f.write(f'title: "{title}"\nurl: "{link}"\n')
+          except Exception as e:
+              print(f"Error fetching feed: {e}")
+              sys.exit(0)
+          PYEOF
 
       - name: Check for changes
         id: diff
