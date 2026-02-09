@@ -237,6 +237,7 @@
                             <option value="" disabled selected>Select an option</option>
                             <option value="lessons">Trumpet Lessons</option>
                             <option value="event">Hiring for an Event</option>
+                            <option value="scale-shuffle">Scale Shuffle Feedback</option>
                             <option value="other">Something Else</option>
                         </select>
                     </div>
@@ -256,6 +257,22 @@
             <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}</p>
         </footer>
     </div>
+<script>
+(function() {
+  var param = new URLSearchParams(window.location.search).get('subject');
+  if (param) {
+    var sel = document.getElementById('interest');
+    if (sel) {
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === param) {
+          sel.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  }
+})();
+</script>
 </body>
 
 </html>
