@@ -1,0 +1,575 @@
+---
+layout: null
+permalink: /scale-shuffle/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scale Shuffle — Randomized Scale Practice for Musicians</title>
+  <meta name="description" content="Scale Shuffle randomizes scales across 15+ types and 17 keys, displays sheet music notation, and tracks your practice streaks. Free for iOS.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Scale Shuffle — Randomized Scale Practice">
+  <meta property="og:description" content="Randomize your scale practice across 15+ types and 17 keys. Sheet music notation, streak tracking, and more. Free for iOS.">
+  <meta property="og:image" content="https://tonyscida.com/img/scale-shuffle-icon.png">
+  <meta property="og:url" content="https://tonyscida.com/scale-shuffle/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Scale Shuffle — Randomized Scale Practice">
+  <meta name="twitter:description" content="Randomize your scale practice across 15+ types and 17 keys. Free for iOS.">
+  <meta name="twitter:image" content="https://tonyscida.com/img/scale-shuffle-icon.png">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #F2A03D;
+      --accent-dark: #D88A2A;
+      --accent-light: #FFF4E6;
+      --text: #1a1a2e;
+      --text-secondary: #555;
+      --bg: #FAFAFA;
+      --card-bg: #FFFFFF;
+      --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.1);
+      --radius: 16px;
+      --max-width: 960px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Nav ─────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,250,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* ── Hero ─────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 64px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero-icon {
+      width: 128px;
+      height: 128px;
+      border-radius: 28px;
+      box-shadow: 0 8px 32px rgba(242,160,61,0.25);
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-top: 24px;
+      animation: fadeUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero .tagline {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      animation: fadeUp 0.6s ease-out 0.2s both;
+    }
+
+    .hero .subtitle {
+      font-size: 0.95rem;
+      color: var(--accent-dark);
+      font-weight: 600;
+      margin-top: 12px;
+      animation: fadeUp 0.6s ease-out 0.3s both;
+    }
+
+    /* ── Features ─────────────────────────────── */
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-light);
+      border-radius: 10px;
+    }
+
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-dark);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── Screenshots ──────────────────────────── */
+    .screenshots-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .phone-frame {
+      width: 220px;
+      position: relative;
+      background: #1a1a1a;
+      border-radius: 36px;
+      padding: 12px 10px;
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.18),
+        inset 0 0 0 1.5px #333,
+        inset 0 0 0 3px #1a1a1a;
+    }
+
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 16px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    .phone-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 26px;
+    }
+
+    /* ── CTA ──────────────────────────────────── */
+    .cta {
+      text-align: center;
+      padding: 64px 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .cta h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 28px;
+    }
+
+    .cta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--text);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .cta-badge:hover {
+      background: #333;
+    }
+
+    .cta-badge svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    /* ── Privacy ──────────────────────────────── */
+    .privacy {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    .privacy h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .privacy h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    .privacy p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .privacy a {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    .privacy-updated {
+      font-size: 0.85rem;
+      color: #999;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    /* ── Footer ───────────────────────────────── */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    .footer a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Animations ───────────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ───────────────────────────── */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.05rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-frame {
+        width: 160px;
+        border-radius: 28px;
+        padding: 9px 8px;
+      }
+
+      .phone-frame::before {
+        width: 42px;
+        height: 12px;
+        top: 12px;
+        border-radius: 7px;
+      }
+
+      .phone-frame img {
+        border-radius: 20px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .section-title,
+      .cta h2,
+      .privacy h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/scale-shuffle/" class="nav-brand">
+        <img src="/img/scale-shuffle-icon.png" alt="Scale Shuffle icon" width="28" height="28">
+        Scale Shuffle
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="/">tonyscida.com</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <img class="hero-icon" src="/img/scale-shuffle-icon.png" alt="Scale Shuffle app icon" width="128" height="128">
+    <h1>Scale Shuffle</h1>
+    <p class="tagline">Randomize your scale practice. Every day, every key.</p>
+    <p class="subtitle">by Fanfare Studio</p>
+  </header>
+
+  <hr class="divider">
+
+  <!-- Features -->
+  <section id="features" class="section fade-in" style="padding-top: 64px;">
+    <h2 class="section-title">Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="8" height="8" rx="1.5"/><rect x="14" y="2" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><rect x="14" y="14" width="8" height="8" rx="1.5"/><circle cx="6" cy="6" r="1" fill="var(--accent-dark)" stroke="none"/><circle cx="16" cy="4" r="1" fill="var(--accent-dark)" stroke="none"/><circle cx="20" cy="8" r="1" fill="var(--accent-dark)" stroke="none"/><circle cx="4" cy="16" r="1" fill="var(--accent-dark)" stroke="none"/><circle cx="8" cy="20" r="1" fill="var(--accent-dark)" stroke="none"/><circle cx="18" cy="18" r="1" fill="var(--accent-dark)" stroke="none"/></svg>
+        </div>
+        <h3>Random Generator</h3>
+        <p>Tap to get a random scale from 15+ types across all 17 keys. No more defaulting to the same comfortable patterns.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <h3>Sheet Music</h3>
+        <p>See every scale written out in standard notation. Great for sight-reading practice and learning new patterns.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Progress Tracking</h3>
+        <p>Track your practice streaks and stats. Build consistency with daily reminders and see how far you&rsquo;ve come.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <h3>Customizable</h3>
+        <p>Choose which scale types and keys to include. Focus on what you need to work on, skip what you don&rsquo;t.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="section fade-in">
+    <h2 class="section-title">Screenshots</h2>
+    <div class="screenshots-row">
+      <div class="phone-frame"><img src="/img/scale-shuffle-home.png" alt="Scale Shuffle home screen showing randomized scale" width="390" height="844" loading="lazy"></div>
+      <div class="phone-frame"><img src="/img/scale-shuffle-notes.png" alt="Scale Shuffle displaying sheet music notation" width="390" height="844" loading="lazy"></div>
+      <div class="phone-frame"><img src="/img/scale-shuffle-stats.png" alt="Scale Shuffle practice statistics and streaks" width="390" height="844" loading="lazy"></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <section class="cta fade-in">
+    <h2>Get Scale Shuffle</h2>
+    <p>Free for iPhone and iPad. No account required, no data collected.</p>
+    <a href="#" class="cta-badge" aria-label="Coming soon to the App Store">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Coming Soon on the App Store
+    </a>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Privacy Policy -->
+  <section id="privacy" class="privacy fade-in">
+    <h2>Privacy Policy</h2>
+
+    <h3>Overview</h3>
+    <p>Scale Shuffle is designed with your privacy in mind. We do not collect, store, or transmit any personal data. The app works entirely on your device.</p>
+
+    <h3>Data Collection</h3>
+    <p>Scale Shuffle collects <strong>no personal information</strong>. We do not use analytics, tracking pixels, advertising identifiers, or any third-party data collection tools.</p>
+
+    <h3>Local Storage</h3>
+    <p>Your practice data, preferences, and statistics are stored locally on your device. This data never leaves your device and is not accessible to us or any third party.</p>
+
+    <h3>Tips &amp; Purchases</h3>
+    <p>Scale Shuffle may offer optional tip jar purchases through Apple&rsquo;s StoreKit framework. These transactions are handled entirely by Apple and are subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple&rsquo;s Privacy Policy</a>. We do not receive any personal financial information from these transactions.</p>
+
+    <h3>Children&rsquo;s Privacy</h3>
+    <p>Scale Shuffle does not collect data from any user, including children under 13. The app is safe for users of all ages and complies with COPPA (Children&rsquo;s Online Privacy Protection Act) requirements.</p>
+
+    <h3>Changes to This Policy</h3>
+    <p>If we update this privacy policy, we will post the changes on this page with a revised date below.</p>
+
+    <h3>Contact</h3>
+    <p>If you have questions about this privacy policy, contact us at <a href="mailto:tony@tonyscida.com">tony@tonyscida.com</a>.</p>
+
+    <p class="privacy-updated">Last updated: February 2026</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 <a href="/">Tony Scida</a> / Fanfare Studio</p>
+  </footer>
+
+  <!-- Scroll animations -->
+  <script>
+    (function() {
+      var els = document.querySelectorAll('.fade-in');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
