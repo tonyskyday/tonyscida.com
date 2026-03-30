@@ -41,3 +41,11 @@
   venue: "St. Christopher's School Arts Center"
   location: "Richmond, VA"
   link: "https://www.richmondphilharmonic.org/concerts"
+
+
+- date: "April 12, 2026"
+  time: "6:00 PM"
+  ensemble: "Commonwealth Winds"
+  title: "ACB Send-Off Concert"
+  venue: "Thomase Dale High School"
+  location: "Chester, VA"
