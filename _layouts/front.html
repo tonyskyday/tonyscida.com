@@ -100,6 +100,7 @@
                 {% assign upcoming_performances = upcoming_performances | push: performance %}
             {% endif %}
         {% endfor %}
+        {% assign upcoming_performances = upcoming_performances | sort: "date" %}
         {% assign show_performances = false %}
         {% if upcoming_performances.size > 0 and site.hide_performances != true %}
             {% assign show_performances = true %}

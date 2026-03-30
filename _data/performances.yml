@@ -2,7 +2,7 @@
 # Edit this file to update the performances section on your website
 #
 # Format:
-#   - date: "Month Day, Year"
+#   - date: YYYY-MM-DD
 #     time: "Time"
 #     ensemble: "Group Name"
 #     title: "Concert Title (optional)"
@@ -10,16 +10,16 @@
 #     location: "City, State"
 #     link: "https://... (optional)"
 #
-# Performances are displayed in the order listed here.
+# Performances are automatically sorted by date.
 # Remove past performances as needed.
 
-- date: "March 1, 2026"
+- date: 2026-03-01
   time: "6:00 PM"
   ensemble: "Commonwealth Winds"
   venue: "Godwin High School"
   location: "Richmond, VA"
 
-- date: "March 8, 2026"
+- date: 2026-03-08
   time: "4:00 PM"
   ensemble: "Richmond Philharmonic Orchestra"
   title: "The American Dream"
@@ -27,14 +27,14 @@
   location: "Richmond, VA"
   link: "https://www.richmondphilharmonic.org/concerts"
 
-- date: "April 18, 2026"
+- date: 2026-04-18
   time: "4:00 PM"
   ensemble: "Commonwealth Winds"
   title: "ACB Convention"
   venue: "ACB Convention"
   location: "Towson, MD"
 
-- date: "May 3, 2026"
+- date: 2026-05-03
   time: "4:00 PM"
   ensemble: "Richmond Philharmonic Orchestra"
   title: "Celebrating America"
@@ -42,8 +42,7 @@
   location: "Richmond, VA"
   link: "https://www.richmondphilharmonic.org/concerts"
 
-
-- date: "April 12, 2026"
+- date: 2026-04-12
   time: "6:00 PM"
   ensemble: "Commonwealth Winds"
   title: "ACB Send-Off Concert"
