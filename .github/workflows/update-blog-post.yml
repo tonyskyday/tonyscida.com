@@ -8,6 +8,7 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
     steps:
@@ -21,7 +22,7 @@ jobs:
           try:
               req = urllib.request.Request("https://notanthony.com/feed/",
                   headers={"User-Agent": "GitHub-Actions-Blog-Updater"})
-              data = urllib.request.urlopen(req).read()
+              data = urllib.request.urlopen(req, timeout=30).read()
               root = ET.fromstring(data)
               item = root.find(".//item")
               if item is None:
