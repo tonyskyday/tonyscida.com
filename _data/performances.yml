@@ -52,6 +52,34 @@
 - date: 2026-04-07
   time: "5:30 PM"
   ensemble: "Batter Up Brass Band"
-  title: "Flying Squirrels Openining Night"
+  title: "Flying Squirrels Opening Night"
+  venue: "CarMax Park"
+  location: "Richmond, VA"
+
+- date: 2026-06-21
+  time: "4:00 PM"
+  ensemble: "Richmond Philharmonic Orchestra"
+  title: "A Salute to America's Armed Forces"
+  venue: "Virginia War Memorial"
+  location: "Richmond, VA"
+
+- date: 2026-06-23
+  time: "7:00 PM"
+  ensemble: "Richmond Brass & Percussion Consort"
+  title: "Summer Concert Series"
+  venue: "St. James the Less"
+  location: "Ashland, VA"
+
+- date: 2026-06-30
+  time: "7:00 PM"
+  ensemble: "Richmond Brass & Percussion Consort"
+  title: "Summer Concert Series"
+  venue: "Chester Presbyterian Church"
+  location: "Chester, VA"
+
+- date: 2026-06-11
+  time: "5:30 PM"
+  ensemble: "Batter Up Brass Band"
+  title: "Richmond Flying Squirrels Game"
   venue: "CarMax Park"
   location: "Richmond, VA"
