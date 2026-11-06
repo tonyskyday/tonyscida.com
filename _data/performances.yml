@@ -83,3 +83,29 @@
   title: "Richmond Flying Squirrels Game"
   venue: "CarMax Park"
   location: "Richmond, VA"
+
+- date: 2026-12-06
+  time: "3:00 PM"
+  ensemble: "Richmond Brass & Percussion Consort"
+  venue: "St. Giles Presbyterian Church"
+  location: "Richmond, VA"
+
+- date: 2026-12-15
+  time: "7:00 PM"
+  ensemble: "Richmond Brass & Percussion Consort"
+  venue: "Chester Presbyterian Church"
+  location: "Chester, VA"
+
+- date: 2026-12-22
+  time: "7:00 PM"
+  ensemble: "Richmond Brass & Percussion Consort"
+  venue: "Derbyshire Baptist Church"
+  location: "Richmond, VA"
+
+- date: 2026-12-07
+  time: "7:00 PM"
+  ensemble: "Richmond Philharmonic Orchestra"
+  title: "Holiday Pops"
+  venue: "James Center / Omni Hotel"
+  location: "Richmond, VA"
+  link: "https://www.richmondphilharmonic.org/concerts"
